@@ -21,12 +21,14 @@ use App\Http\Controllers\OfficialreportController;
 // Route::get('/', function () {
 //     return view('admin.login');
 // });
-Route::middleware('guest')->group(function () {
+Route::middleware('guest')->group(function () { //guest blm bisa login
     Route::get('/login',[AuthController::class,'login'])->name('login');
     Route::post('/login',[AuthController::class,'authenticate'])->name('auth');
+    Route::get('register',[AuthController::class, 'register'])->name('register');
+    Route::post('register',[AuthController::class, 'registerProcess']);
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () { //auth jika sudah login
     Route::get('logout',[AuthController::class,'logout']);
 
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
@@ -36,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('user-edit/{id}',[UserController::class,'edit']);
     Route::put('user-update/{id}',[UserController::class,'update']);
     Route::get('user-delete/{id}',[UserController::class,'destroy']);
+    Route::get('user-approve/{id}',[UserController::class, 'approve']);
 
     Route::get('official',[OfficialreportController::class,'index']);
     Route::get('add-official',[OfficialreportController::class,'add']);

@@ -9,9 +9,7 @@
                     <h3 class="m-0-font-weight-bold-text-primary">User</h3>
                 </div>
                 <div class="card-body">
-                    <div class="row-justify-content-end-mx-3-mb-2">
-                        <a href="add-user" class="btn btn-sm btn-primary "><i class="fas fa-plus"></i>User</a>
-                    </div>
+                    
                     <div class="mt-5">
                         @if (session('status'))
                           <div class="alert alert-success">
@@ -43,9 +41,10 @@
                                     <td>{{ $item->address}}</td>
                                    
                                     <td>
-                                        <a href="user-edit/{{ $item->id}}">Edit</a> |
-                                     
-                                        <a href="user-delete/{{ $item->id }}" onclick="Are you sure delete this user? ">Delete</a>
+                                     @if ($item->status == 'inactive')
+                                        <a href="/user-approve/{{$item->id}}" class="btn btn-primary">Approve</a>
+                                        @endif
+                                        <a href="user-delete/{{ $item->id }}"  class="btn btn-danger" data-czonfirm="Are you sure delete this user? ">Delete</a>
                                     </td>
                                 </tr>
                                      

@@ -33,7 +33,7 @@ class UserController extends Controller
             'address' => $request->address,
             
         ]);;
-        return redirect('user')->with('status','User Add Successfuly');
+        return redirect('user')->with('status','User berhasil ditambah');
     }
     public function edit($id)
     {
@@ -61,14 +61,21 @@ class UserController extends Controller
         }
         
        
-        return redirect()->route('users.index')->with('status','User Updated Successfuly');
+        return redirect()->route('users.index')->with('status','User berhasil diperbarui');
         
     }
     public function destroy($id)
     {
         $data = Users::where('id',$id)->first();
         $data->delete(); 
-        return redirect('user')->with('status','User deleted Successfully');
+        return redirect('user')->with('status','User berhasil dihapus');
       
+    }
+    public function approve($id)
+    {
+        $user =  Users::where('id', $id)->first();
+        $user->status = 'active';
+        $user->save();
+        return redirect('user')->with('status','User Baru telah disetujui');
     }
 }

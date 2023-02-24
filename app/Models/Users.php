@@ -19,6 +19,7 @@ class Users extends Authenticable
         'password',
         'phone',
         'address',
+        'status',
        
     ];
 

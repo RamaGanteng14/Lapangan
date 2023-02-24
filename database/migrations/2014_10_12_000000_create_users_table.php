@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('address');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('status')->default('inactive');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -35,5 +37,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        $table->dropSoftDeletes();
     }
 };

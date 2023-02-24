@@ -16,21 +16,21 @@ class OfficialreportController extends Controller
     {
         $user_id = Auth::user()?->id;
         // dd($user_id);
-        $search = $request->search;
-        $official = official_report::with('users')
-        ->when($search, function($query) use ($search) {
-            $query->whereHas('users', function($query) use($search) {
-                $query->where('name', 'LIKE', '%'.$search.'%');
-            })
-            ->orWhere('instansi', 'LIKE', '%'.$search.'%')
-            ->orWhere('address', 'LIKE', '%'.$search.'%')
-            ->orWhere('client', 'LIKE', '%'.$search.'%');
-        })
-        ->get();
-        // $official  = official_report::where([
-        //         ['user_id', $user_id]
-        //     ])
-        //     ->get();
+        // $search = $request->search;
+        // $official = official_report::with('users')
+        // ->when($search, function($query) use ($search) {
+        //     $query->whereHas('users', function($query) use($search) {
+        //         $query->where('name', 'LIKE', '%'.$search.'%');
+        //     })
+        //     ->orWhere('instansi', 'LIKE', '%'.$search.'%')
+        //     ->orWhere('address', 'LIKE', '%'.$search.'%')
+        //     ->orWhere('client', 'LIKE', '%'.$search.'%');
+        // })
+        // ->get();
+        $official  = official_report::where([
+                ['user_id', $user_id]
+            ])
+            ->get();
         return view('lap.index',['official' => $official]);
         
     }
@@ -69,7 +69,7 @@ class OfficialreportController extends Controller
                ]);
            }
        }
-       return redirect('official')->with('success','Official Report Added successfuly');
+       return redirect('official')->with('success','Berita Acara berhasil ditambahkan');
     }
     public function edit($id)
     {
@@ -104,12 +104,12 @@ class OfficialreportController extends Controller
                 ]);
             }
         }
-        return redirect('official')->with('success','Official Report Added successfuly');
+        return redirect('official')->with('success','Berita Acara berhasil diubah');
     }
     public function destroy($id)
     {
         official_report::where('id',$id)->delete();
-        return redirect('official')->with('success','Official Report Deleted successfully');
+        return redirect('official')->with('success','Berita Acara berhasil dihapus');
     }
     public function detail($id)
     {

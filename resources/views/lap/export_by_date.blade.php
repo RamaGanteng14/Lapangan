@@ -34,7 +34,9 @@
             <tr>
               <p align="center">
                 <span style="line-height: 1.6; font-weight: bold;">
-                LAPORAN BERITA ACARA
+                LAPANGAN BERITA ACARA
+                <br>
+                <small>Jalan Yos Sudarso, Bejen, Karanganyar</small>
                 </span>
               </p>
             </tr>
@@ -51,8 +53,8 @@
                 <th>Waktu</th>
                 <th>Jarak</th>
                 <th>Kendaraan</th>
-    
-                <th>Gambar</th>
+{{--     
+                <th>Gambar</th> --}}
               </tr>
             </thead>
             <tbody>
@@ -64,12 +66,12 @@
               <td>{{ $report->time}}</td>
               <td>{{ $report->distance}}</td>
               <td>{{ $report->vehicle}}</td>
-            
+{{--             
               <td>
                 @foreach ($pictures[$report->id] as $picture)
                 <img src="data:image/png;base64,{{ $picture }}" style="width: 70px; margin-right: 20px">
                 @endforeach
-              </td>
+              </td> --}}
             </tr>
             @endforeach
           </tbody>

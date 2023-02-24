@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <div class="row-justify-content-end mx-3-mb-2">
                         <a href="add-official" class="btn btn-primary "><i class="fas fa-plus"></i> Tambah</a>
-                        <a href="cetak-form" class="btn btn-success px-3"><i class="fas fa-file-excel"></i> Cetak</a>
+                        <a href="cetak-form" class="btn btn-success px-3"><i class="fas fa-file-pdf"></i> Cetak</a>
                     </div>
                     <div class="mt-5">
                         @if (session('success'))
@@ -57,7 +57,7 @@
                                     <td>
                                         <a href="official-edit/{{ $item->id}}">Edit</a> |
                                         <a href="official-detail/{{ $item->id}}">Detail</a> |
-                                        <a href="official-delete/{{ $item->id}}" onclick="Are you sure delete this user? ">Delete</a>
+                                        <a href="official-delete/{{ $item->id}}" class="delete" data-confirm="Are you sure to delete this data?">Delete</a>
                                     </td>
                                 </tr>                                    
                                 @endforeach
